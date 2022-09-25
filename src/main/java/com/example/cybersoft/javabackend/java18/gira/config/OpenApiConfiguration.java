@@ -25,9 +25,9 @@ public class OpenApiConfiguration {
                         .version("v1.0")
                         .license(new License().name("NO LICENSE").url("http://tuanphan.dev"))
                         .contact(new Contact()
-                                .email("contact@tuanphan.dev")
-                                .name("Phan Thanh Tuan")
-                                .url("https://tuanphan.dev")))
+                                .email("contact@dandd.dev")
+                                .name("Duong Duc Dan")
+                                .url("github.com")))
                 .externalDocs(new ExternalDocumentation()
                         .description("Spring Documentation")
                         .url("https://docs.spring.io/spring-framework/docs/current/reference/html/"));

@@ -16,6 +16,7 @@ public class JpaConfiguration {
     }
 
     static class AuditorAwareImpl implements AuditorAware<String> {
+        // Func getCurrentAuditor() Lấy ra thằng User nằm trong Security context
         @Override
         public Optional<String> getCurrentAuditor() {
             return Optional.of("Anonymous");

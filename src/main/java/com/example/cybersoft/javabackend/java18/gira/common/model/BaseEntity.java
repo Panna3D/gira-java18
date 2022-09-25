@@ -24,12 +24,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@SuperBuilder // design pattern để tạo ra 1 instance, giúp lớp con truy cập vào dễ dàng hơn
-@MappedSuperclass // đánh dấu cho Hibernate biết về lớp này, do Hibernate chỉ quan tâm đến thằng class nào có @Entity
-@EntityListeners(AuditingEntityListener.class) // kích hoạt
+@SuperBuilder // design pattern để tạo ra 1 instance, giúp lớp con truy cập vào thuộc tính lớp cha dễ dàng hơn
+@MappedSuperclass // Cho phép các lớp con kế thựa Đánh dấu cho Hibernate biết về lớp này, do Hibernate chỉ quan tâm đến thằng class nào có @Entity
+@EntityListeners(AuditingEntityListener.class) // kích hoạt Audit Annotation @Id, @Version, @CreatedBy, @CreatedDate, @LastModifiedBy, @LastModifiedAt
 public class BaseEntity implements Serializable {
 
     @Id
+    @GeneratedValue
     @Type(type = "uuid-char") // -> Quy định kiểu data lưu vào DB
     @Column(name = Columns.ID) // -> K cần gán mà tự động sinh ID
     protected UUID id;
@@ -57,6 +58,10 @@ public class BaseEntity implements Serializable {
     @LastModifiedDate
     @Column(name = Columns.LAST_MODIFIED_AT)
     protected LocalDateTime lastModifiedAt;
+    @Override
+    public boolean equals(Object obj) {
+        return this.id.equals(((BaseEntity) obj).id);
+    }
 
     // Inner class
     @UtilityClass
@@ -68,5 +73,5 @@ public class BaseEntity implements Serializable {
         static final String LAST_MODIFIED_BY = "LAST_MODIFIED_BY";
         static final String LAST_MODIFIED_AT = "LAST_MODIFIED_AT";
     }
-    
+
 }
