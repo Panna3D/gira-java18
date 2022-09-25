@@ -4,6 +4,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class RoleEntity {
+    @UtilityClass
     public static class Role {
         public static final String TABLE_NAME = "G_ROLE";
         public static final String NAME = "G_NAME";

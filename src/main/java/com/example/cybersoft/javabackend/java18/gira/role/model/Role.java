@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = RoleEntity.Role.TABLE_NAME)
 public class Role extends BaseEntity { // Panacech
-    @Column(name = RoleEntity.Role.TABLE_NAME)
+    @Column(name = RoleEntity.Role.NAME)
     private String name;
 
     @Column(name = RoleEntity.Role.CODE)
