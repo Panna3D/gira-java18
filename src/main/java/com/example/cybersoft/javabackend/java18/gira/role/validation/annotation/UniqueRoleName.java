@@ -1,6 +1,6 @@
 package com.example.cybersoft.javabackend.java18.gira.role.validation.annotation;
 
-import com.example.cybersoft.javabackend.java18.gira.role.validation.validator.UniqueRoleNameValidator;
+//import com.example.cybersoft.javabackend.java18.gira.role.validation.validator.UniqueRoleNameValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -9,7 +9,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = UniqueRoleNameValidator.class)
+//@Constraint(validatedBy = UniqueRoleNameValidator.class)
+
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface UniqueRoleName {

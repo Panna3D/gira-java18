@@ -2,7 +2,6 @@ package com.example.cybersoft.javabackend.java18.gira.common.model;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.UtilityClass;
 
 import java.util.List;
 @Getter

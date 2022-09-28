@@ -30,7 +30,7 @@ import java.util.UUID;
 public class BaseEntity implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue // -> Tự động sinh ID
     @Type(type = "uuid-char") // -> Quy định kiểu data lưu vào DB
     @Column(name = Columns.ID) // -> K cần gán mà tự động sinh ID
     protected UUID id;

@@ -18,7 +18,7 @@ public class RoleDTO {
 
     @Size(min = 5, max = 100, message = "{role.name.size}")
     @NotBlank
-    @UniqueRoleName
+    @UniqueRoleName //
     private String name;
 
     @Size(min = 3, max = 10, message = "{role.code.size}")
