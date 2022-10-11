@@ -20,7 +20,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jackson:
     serialization:
-      fail-on-empty-beans: false
+      FAIL_ON_EMPTY_BEANS: false
 
 springdoc:
   swagger-ui:

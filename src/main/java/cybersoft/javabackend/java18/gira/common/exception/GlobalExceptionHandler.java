@@ -1,9 +1,9 @@
 package cybersoft.javabackend.java18.gira.common.exception;
 
 import cybersoft.javabackend.java18.gira.common.model.ResponseDTO;
-import cybersoft.javabackend.java18.gira.common.util.ResponseUtils;
 import javax.validation.ConstraintViolationException;
 
+import cybersoft.javabackend.java18.gira.common.util.ResponseUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

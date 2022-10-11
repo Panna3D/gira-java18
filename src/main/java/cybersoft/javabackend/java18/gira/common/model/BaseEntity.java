@@ -1,7 +1,7 @@
 package cybersoft.javabackend.java18.gira.common.model;
 
-import cybersoft.javabackend.java18.gira.common.util.DateTimeUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import cybersoft.javabackend.java18.gira.common.util.DateTimeUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,18 +23,17 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@SuperBuilder // design pattern để tạo ra 1 instance, giúp lớp con truy cập vào thuộc tính lớp cha dễ dàng hơn
-@MappedSuperclass // Cho phép các lớp con kế thựa Đánh dấu cho Hibernate biết về lớp này, do Hibernate chỉ quan tâm đến thằng class nào có @Entity
-@EntityListeners(AuditingEntityListener.class) // kích hoạt Audit Annotation @Id, @Version, @CreatedBy, @CreatedDate, @LastModifiedBy, @LastModifiedAt
+@SuperBuilder
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public class BaseEntity implements Serializable {
-
     @Id
-    @GeneratedValue // -> Tự động sinh ID
-    @Type(type = "uuid-char") // -> Quy định kiểu data lưu vào DB
-    @Column(name = Columns.ID) // -> K cần gán mà tự động sinh ID
+    @Type(type = "uuid-char")
+    @GeneratedValue
+    @Column(name = Columns.ID)
     protected UUID id;
 
-    @Version // -> Spring tự động đi làm cho mình, để check version thay đổi
+    @Version
     @Column(name = Columns.VERSION)
     protected int version;
 
@@ -57,12 +56,13 @@ public class BaseEntity implements Serializable {
     @LastModifiedDate
     @Column(name = Columns.LAST_MODIFIED_AT)
     protected LocalDateTime lastModifiedAt;
+
     @Override
     public boolean equals(Object obj) {
         return this.id.equals(((BaseEntity) obj).id);
     }
 
-    // Inner class
+    // inner class
     @UtilityClass
     static class Columns {
         static final String ID = "ID";
@@ -72,5 +72,4 @@ public class BaseEntity implements Serializable {
         static final String LAST_MODIFIED_BY = "LAST_MODIFIED_BY";
         static final String LAST_MODIFIED_AT = "LAST_MODIFIED_AT";
     }
-
 }

@@ -19,7 +19,7 @@ public class UniqueRoleNameValidator
 
     @Override
     public void initialize(UniqueRoleName constraintAnnotation) {
-        message = constraintAnnotation.message();
+       message = constraintAnnotation.message();
     }
 
     @Override

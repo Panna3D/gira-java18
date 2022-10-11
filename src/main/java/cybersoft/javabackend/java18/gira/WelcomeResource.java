@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class WelcomeResource {
 
-    @GetMapping
-    public String welcome (HttpServletRequest request) {
-        return String.format("Welcome %s to Gira Application", request.getMethod());
+    @GetMapping("/welcome")
+    public String welcome(HttpServletRequest request){
+        return """
+                Welcome %s to Gira Application
+                """.formatted(request.getRemoteAddr());
     }
-
 }

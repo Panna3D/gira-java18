@@ -15,10 +15,10 @@ import java.util.UUID;
 public class RoleDTO {
     // Data Transfer Object
     private UUID id;
-
+    
     @Size(min = 5, max = 100, message = "{role.name.size}")
     @NotBlank
-    @UniqueRoleName // custom annotation
+    @UniqueRoleName
     private String name;
 
     @Size(min = 3, max = 10, message = "{role.code.size}")

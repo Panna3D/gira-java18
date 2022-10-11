@@ -31,7 +31,7 @@ class RoleServiceImpl implements RoleService {
     private final RoleRepository repository;
     private final GiraMapper mapper;
     private final OperationService operationService;
-
+    
     public RoleServiceImpl(RoleRepository repository, GiraMapper mapper, OperationService operationService){
         this.repository = repository;
         this.mapper = mapper;
@@ -60,18 +60,18 @@ class RoleServiceImpl implements RoleService {
 
     @Override
     public RoleWithOperationsDTO addOperations(UUID roleId, List<UUID> ids) {
-        // Check existed role-it first
         Role curRole = repository.findById(roleId)
                 .orElseThrow( () ->
                         new ValidationException("Role is not existed.")
                 );
-        // If role-id is existed -> Adding existed operations to the list
-        List<Operation> operations = operationService.findByIds(ids);  // service
-        // With each operation, add service
+
+        List<Operation> operations = operationService.findByIds(ids);
+
         operations.forEach(curRole::addService);
-        // return Role model?
+
         return mapper.map(curRole, RoleWithOperationsDTO.class);
     }
+
 
     @Override
     public JpaRepository<Role, UUID> getRepository() {

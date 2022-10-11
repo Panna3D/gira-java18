@@ -24,18 +24,16 @@ public class Role extends BaseEntity {
     @Column(name = RoleEntity.Role.NAME, unique = true, length = 100)
     @Length(min = 5, max = 100, message = "Role name must have length between {min} and {max}")
     private String name;
-
+    
     @Column(name = RoleEntity.Role.CODE, unique = true)
     @Length(min = 3, max = 10, message = "Role code must have length between {min} and {max}")
     private String code;
-
+    
     @Column(name = RoleEntity.Role.DESCRIPTION)
     @NotBlank
     private String description;
 
-    // ==================ADD RELATIONSHIP===================
     // best practices
-    // Add foreign key with relation: role _ operation
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = RoleEntity.RoleMappedOperation.JOIN_TABLE,
@@ -44,27 +42,23 @@ public class Role extends BaseEntity {
     )
     private Set<Operation> operations = new LinkedHashSet<>();
 
-    // Add foreign key with relation: role _ user group
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "g_role_user_groups",
+    @JoinTable(name = "g_role_user_groups",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "user_groups_id"))
     private Set<UserGroup> userGroups = new LinkedHashSet<>();
 
-    // ================ADD/REMOVE operation methods=====================
-    // Delete service from Role
     public void removeService(Operation operation){
         operations.remove(operation);
         operation.getRoles().remove(this);
     }
-    // Add service from Role
+
     public Role addService(Operation operation){
         this.operations.add(operation);
         operation.getRoles().add(this);
         return this;
     }
-    // =====================================
+
     @Override
     public int hashCode() {
         return getClass().hashCode();
@@ -72,7 +66,7 @@ public class Role extends BaseEntity {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true; // Cùng bộ nh
+        if (this == obj) return true;
 
         if (obj == null || Hibernate.getClass(this) != Hibernate.getClass(obj))
             return false;

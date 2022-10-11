@@ -15,42 +15,38 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/roles")
 public class RoleRestResource {
-
     private final RoleService service;
-
-    public RoleRestResource(RoleService roleService) {
+    
+    public RoleRestResource(RoleService roleService){
         this.service = roleService;
     }
 
     @GetMapping
-    public ResponseEntity<?> findAll() {
-        return ResponseUtils.get(service.findAll(), HttpStatus.OK); // Generic
+    public Object findAll(){
+        return ResponseUtils.get(service.findAllDto(RoleDTO.class), HttpStatus.OK);
     }
-
-
+    
     @GetMapping("/paging")
-    public ResponseEntity<?> findAllDtoPaging(@RequestParam("size") int size,
-                                            @RequestParam("index") int index) {
+    public Object findAllDtoPaging(@RequestParam("size") int size,
+                                   @RequestParam("index") int index){
         return ResponseUtils.get(
-                        service.findAllDto( // Generic
-                                Pageable.ofSize(size).withPage(index),
-                                RoleDTO.class),
-                HttpStatus.OK);
-    }
-
-    @PostMapping
-    public ResponseEntity<?> save(@RequestBody @Valid RoleDTO roleDTO) {
-        return ResponseUtils.get(service.save(roleDTO), HttpStatus.OK); // service
-    }
-
-    @PostMapping("{role-id}/add-operations")
-    public ResponseEntity<?> addOperations(@RequestBody List<UUID> ids,
-                                            @PathVariable("role-id") UUID roleId){
-        return ResponseUtils.get(
-                service.addOperations(roleId, ids) // service
+                service.findAllDto(Pageable.ofSize(size).withPage(index), RoleDTO.class)
                 , HttpStatus.OK
         );
     }
+    
+    @PostMapping
+    public Object save(@RequestBody @Valid RoleDTO roleDTO){
+        return ResponseUtils.get(service.save(roleDTO), HttpStatus.CREATED);
+    }
 
-
+    @PostMapping("{role-id}/add-operations")
+    public ResponseEntity<?> addOperations(
+            @RequestBody List<UUID> ids,
+            @PathVariable("role-id") UUID roleId){
+        return ResponseUtils.get(
+                service.addOperations(roleId, ids)
+                , HttpStatus.OK
+        );
+    }
 }

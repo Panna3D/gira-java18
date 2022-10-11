@@ -1,6 +1,5 @@
-package cybersoft.javabackend.java18.gira.role.repository;
+package cybersoft.javabackend.java18.gira.role.model;
 
-import cybersoft.javabackend.java18.gira.role.model.Operation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

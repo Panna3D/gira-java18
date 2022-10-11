@@ -2,7 +2,6 @@ package cybersoft.javabackend.java18.gira.role.model;
 
 import lombok.experimental.UtilityClass;
 
-
 @UtilityClass
 public class RoleEntity {
     @UtilityClass
