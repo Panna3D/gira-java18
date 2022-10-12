@@ -17,16 +17,16 @@ public class OpenApiConfiguration {
     public OpenAPI getOpenApi() {
         return new OpenAPI()
                 .components(new Components().addSecuritySchemes("bearerAuth",
-                        new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer")))
+                        new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")))
                 .info(new Info()
                         .title("Gira Application")
                         .description("Operation for Education Purpose")
                         .version("v1.0")
-                        .license(new License().name("NO LICENSE").url("http://java18.cybersoft.dev"))
+                        .license(new License().name("NO LICENSE").url("http://abc.dev"))
                         .contact(new Contact()
-                                .email("contact@dandd.dev")
+                                .email("contact@tuanphan.dev")
                                 .name("Duong Duc Dan")
-                                .url("http://java18.cybersoft.dev")))
+                                .url("https://abc.dev")))
                 .externalDocs(new ExternalDocumentation()
                         .description("Spring Documentation")
                         .url("https://docs.spring.io/spring-framework/docs/current/reference/html/"));
